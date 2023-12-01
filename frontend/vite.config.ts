@@ -18,8 +18,12 @@ export default defineConfig({
         alias: {
             '~bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
             '@': resolve(__dirname, './src'),
+            '@api': resolve(__dirname, './src/api'),
             '@assets': resolve(__dirname, './src/assets'),
             '@components': resolve(__dirname, './src/components'),
+            '@router': resolve(__dirname, './src/router'),
+            '@store': resolve(__dirname, './src/store'),
+            '@views': resolve(__dirname, './src/views'),
         },
     },
     build: {
