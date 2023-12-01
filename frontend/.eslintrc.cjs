@@ -11,7 +11,9 @@ module.exports = {
     plugins: [
         '@typescript-eslint',
     ],
+    parser: "vue-eslint-parser",
     parserOptions: {
+        parser: "@typescript-eslint/parser",
         ecmaVersion: 'esnext',
         sourceType: 'module',
     },
@@ -28,23 +30,23 @@ module.exports = {
             ],
         }
     ],
-    settings: {
-        'import/resolver': {
-            node: {
-                extensions: ['.js', '.vue', '.ts', '.d.ts'],
-            },
-            alias: {
-                extensions: ['.vue', '.js', '.ts', '.scss', '.d.ts'],
-                map: [
-                    ['@/components', './src/components'],
-                    ['@/pages', './src/pages'],
-                    ['@/router', './src/router'],
-                    ['@/store', './src/store'],
-                    ['@/styles', './src/styles'],
-                    ['@/types', './src/types'],
-                    ['@/utils', './src/utils'],
-                ],
-            },
-        },
-    }
-}
+    // settings: {
+    //     'import/resolver': {
+    //         node: {
+    //             extensions: ['.js', '.vue', '.ts', '.d.ts'],
+    //         },
+    //         alias: {
+    //             extensions: ['.vue', '.js', '.ts', '.scss', '.d.ts'],
+    //             map: [
+    //                 ['@/components', './src/components'],
+    //                 ['@/pages', './src/pages'],
+    //                 ['@/router', './src/router'],
+    //                 ['@/store', './src/store'],
+    //                 ['@/styles', './src/styles'],
+    //                 ['@/types', './src/types'],
+    //                 ['@/utils', './src/utils'],
+    //             ],
+    //         },
+    //     },
+    // }
+};
