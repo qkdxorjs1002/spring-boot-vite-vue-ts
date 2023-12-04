@@ -31,14 +31,18 @@
         "sourceMap": true,
         "strict": true,
         "target": "ES2020",
-        "useDefineForClassFields": true
+        "useDefineForClassFields": true,
+        "types": [
+            "unplugin-icons/types/vue"
+        ]
     },
     "include": [
         "src/**/*.ts",
         "src/**/*.tsx",
         "src/**/*.vue",
         "tests/**/*.ts",
-        "tests/**/*.tsx"
+        "tests/**/*.tsx",
+        "components.d.ts"
     ],
     "exclude": [
         "node_modules"

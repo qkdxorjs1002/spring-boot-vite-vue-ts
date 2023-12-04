@@ -11,37 +11,38 @@
         <h4>Backend response: <span class="alert alert-primary" role="alert" :show="showResponse" dismissible
                                     @dismissed="showResponse=false">{{ backendResponse }}</span></h4>
 
-        <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseOuter">Show Response
+        <BButton variant="secondary" v-b-toggle="'collapseOuter'">Show Response
             details
-        </button>
+        </BButton>
         <p></p>
-        <div class="collapse" id="collapseOuter">
+        <BCollapse id="collapseOuter">
             <div class="card card-body">
                 The Response hat this details
-                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseInnerStatusCode">HTTP
+                <BButton variant="primary" v-b-toggle="'collapseInnerStatusCode'">HTTP
                     Status
-                </button>
+                </BButton>
 
-                <div class="collapse" id="collapseInnerStatusCode">
+                <BCollapse id="collapseInnerStatusCode">
                     <div class="card card-body">Status: {{ httpStatusCode }}</div>
                     <div class="card card-body">Status Text: {{ httpStatusText }}</div>
-                </div>
+                </BCollapse>
 
-                <button class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#collapseInnerResponseConfig">
+                <BButton variant="danger" v-b-toggle="'collapseInnerResponseConfig'">
                     Full Request configuration
-                </button>
-                <div class="collapse" id="collapseInnerResponseConfig">
+                </BButton>
+                <BCollapse id="collapseInnerResponseConfig">
                     <div class="card card-body">Config: {{ responseConfig }}</div>
-                </div>
+                </BCollapse>
             </div>
-        </div>
+        </BCollapse>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import api from '../api/backend-api'
+import api from '@/api/backend-api'
 import { AxiosError, AxiosRequestConfig, AxiosResponseHeaders } from "axios";
+import { BButton, BCollapse } from "bootstrap-vue-next";
 
 interface State {
     msg: string;
@@ -55,7 +56,7 @@ interface State {
 
 export default defineComponent({
     name: 'Bootstrap',
-
+    components: { BButton, BCollapse },
     data: (): State => {
         return {
             msg: 'Nice Bootstrap candy!',

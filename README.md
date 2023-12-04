@@ -15,7 +15,7 @@
     - ESLint
     - Vite 5
     - Vue.js 3
-    - Bootstrap 5.2
+    - Bootstrap 5.2 / Bootstrap-Vue-Next
 
 ```shell
 # 프로젝트 처음 실행

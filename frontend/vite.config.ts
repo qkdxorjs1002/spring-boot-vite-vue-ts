@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import Components from 'unplugin-vue-components/vite'
+import { BootstrapVueNextResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolve from 'unplugin-icons/resolver'
 import { resolve } from 'path';
 
 // https://vitejs.dev/config/
@@ -13,17 +17,23 @@ export default defineConfig({
             },
         },
     },
-    plugins: [ vue() ],
+    plugins: [
+        vue(),
+        Components({
+            resolvers: [ BootstrapVueNextResolver() ],
+        }),
+        Components({
+            resolvers: [ IconsResolve() ],
+            dts: true,
+        }),
+        Icons({
+            compiler: 'vue3',
+            autoInstall: true,
+        }),
+    ],
     resolve: {
         alias: {
-            '~bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
             '@': resolve(__dirname, './src'),
-            '@api': resolve(__dirname, './src/api'),
-            '@assets': resolve(__dirname, './src/assets'),
-            '@components': resolve(__dirname, './src/components'),
-            '@router': resolve(__dirname, './src/router'),
-            '@store': resolve(__dirname, './src/store'),
-            '@views': resolve(__dirname, './src/views'),
         },
     },
     build: {
