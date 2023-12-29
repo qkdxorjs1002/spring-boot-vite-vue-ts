@@ -19,8 +19,11 @@ public class BackendController {
     public static final String HELLO_TEXT = "Hello from Spring Boot Backend!";
     public static final String SECURED_TEXT = "Hello from the secured resource!";
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public BackendController(@Autowired UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @ResponseBody
     @RequestMapping(path = "/hello")
@@ -32,7 +35,7 @@ public class BackendController {
     @ResponseBody
     @RequestMapping(path = "/user/{lastName}/{firstName}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public long addNewUser (@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
+    public long addNewUser(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
         User savedUser = userRepository.save(new User(firstName, lastName));
 
         LOG.info(savedUser.toString() + " successfully saved into DB");
@@ -51,7 +54,7 @@ public class BackendController {
     }
 
     @ResponseBody
-    @RequestMapping(path="/secured", method = RequestMethod.GET)
+    @RequestMapping(path = "/secured", method = RequestMethod.GET)
     public String getSecured() {
         LOG.info("GET successfully called on /secured resource");
         return SECURED_TEXT;
