@@ -21,23 +21,25 @@ public class SpaRedirectFilterConfiguration {
 
     @Bean
     public FilterRegistrationBean<OncePerRequestFilter> spaRedirectFiler() {
-        FilterRegistrationBean<OncePerRequestFilter> registration = new FilterRegistrationBean<>();
+        final FilterRegistrationBean<OncePerRequestFilter> registration = new FilterRegistrationBean<>();
+
         registration.setFilter(createRedirectFilter());
         registration.addUrlPatterns("/*");
         registration.setName("frontendRedirectFiler");
         registration.setOrder(1);
+
         return registration;
     }
 
     private OncePerRequestFilter createRedirectFilter() {
         return new OncePerRequestFilter() {
-            private final Pattern pattern = Pattern.compile("(?!/actuator|/api|/_nuxt|/static|/index\\.html|/200\\.html|/favicon\\.ico|/sw\\.js).*$");
+            private final Pattern pattern = Pattern.compile("(?!/actuator|/api|/_nuxt|/static|/index\\.html|/200\\.html|/favicon\\.(ico|svg)|/sw\\.js).*$");
 
             @Override
             protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws ServletException, IOException {
                 if (pattern.matcher(req.getRequestURI()).matches() && !req.getRequestURI().equals("/")) {
                     LOGGER.info("URL {} entered directly into the Browser, redirecting...", req.getRequestURI());
-                    RequestDispatcher rd = req.getRequestDispatcher("/");
+                    final RequestDispatcher rd = req.getRequestDispatcher("/");
                     rd.forward(req, res);
                 } else {
                     chain.doFilter(req, res);
