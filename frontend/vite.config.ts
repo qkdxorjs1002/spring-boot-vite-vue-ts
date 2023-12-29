@@ -8,6 +8,10 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    define: {
+        __APP_URL__: JSON.stringify("http://localhost:8089"),
+        __API_URL__: JSON.stringify("http://localhost:8089/api"),
+    },
     server: {
         proxy: {
             '/api': {

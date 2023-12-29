@@ -8,6 +8,10 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
     ],
+    globals: {
+        __APP_URL__: true,
+        __API_URL__: true,
+    },
     plugins: [
         '@typescript-eslint',
     ],
